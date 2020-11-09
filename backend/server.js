@@ -3,6 +3,7 @@ import data from './data';
 import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import userRoute from './routes/userRoute';
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.get("/api/products", (req, res) => {
     res.send(data.products);
 });
 
+app.use(bodyParser.json());
 app.use("/api/users", userRoute);
 app.get("/api/product/:id", (req, res) => {
     const productId = req.params.id;
